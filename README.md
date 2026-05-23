@@ -52,6 +52,8 @@ Welcome to my GitHub profile! I'm an IT undergraduate with a passion for web dev
 - 🎯 Goal: Become a professional software developer  
 
 ---
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I7M2202QXZ)
+---
 
 ## 📫 Contact Me
 
