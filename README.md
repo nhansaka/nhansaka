@@ -23,7 +23,6 @@ I'm an enthusiastic and self-driven IT undergraduate from Sri Lanka who enjoys c
 - 🎓 IT Undergraduate at **Uva Wellassa University** following the **IIT Degree Program**
 - 💻 Freelancing in **Graphic Design, Branding, and Web Design**
 - 🎨 Founder of **Shopizotrix Digital Solutions**
-- 📸 Shutterstock creator under **Digifix**
 - 🌱 Currently learning **Full-Stack Web Development, AI Tools, UI/UX, and Digital Business**
 - 🧠 Interested in **React, PHP, MySQL, C#, Java, UI/UX Design, and Automation**
 - 🎯 Goal: To become a **successful full-stack developer, designer, and digital entrepreneur**
@@ -37,7 +36,6 @@ I'm an enthusiastic and self-driven IT undergraduate from Sri Lanka who enjoys c
 - Front-end UI design
 - Database design and management
 - Graphic design and branding
-- Canva and Photoshop design
 - GitHub project management
 - Freelance web and creative design projects
 - Digital business and entrepreneurship learning
@@ -70,8 +68,6 @@ I'm an enthusiastic and self-driven IT undergraduate from Sri Lanka who enjoys c
 ## 📚 Current Projects
 
 - 🎉 **EventBridge** – Smart Event Team Builder web platform
-- 📖 **Library Management System** – C# + SQL Server
-- 🎓 **Student Registration System**
 - ☕ **Java OOP Course Project**
 - 🌐 **Freelance Web Design Projects**
 - 🎨 **Digital Branding & Design Assets**
@@ -87,8 +83,6 @@ I'm an enthusiastic and self-driven IT undergraduate from Sri Lanka who enjoys c
 - Grow as a freelance designer and developer
 - Learn AI tools and automation for business productivity
 - Build **Shopizotrix Digital Solutions** as a strong digital brand
-- Improve my creative stock portfolio through **Digifix**
-
 ---
 
 ## 📌 Project Ideas I'm Building
@@ -96,8 +90,6 @@ I'm an enthusiastic and self-driven IT undergraduate from Sri Lanka who enjoys c
 | Project | Main Technologies | Status |
 |---|---|---|
 | EventBridge | React, PHP, MySQL | Planning / Development |
-| Library Management System | C#, SQL Server | Learning Project |
-| Student Registration System | PHP / C# / SQL | Learning Project |
 | React Portfolio Website | React, CSS | Upcoming |
 | Creative Design Portfolio | Photoshop, Canva | Ongoing |
 
