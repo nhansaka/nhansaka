@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Neshan Hansaka</h1>
 
 <h3 align="center">
-🎓 IT Undergraduate | 💻 Freelancer | 🎨 Designer | 🚀 Future Digital Entrepreneur
+🎓 IT Undergraduate | 💻 Developer | 🎨 Designer | 🚀 Future Digital Entrepreneur
 </h3>
 
 <p align="center">
