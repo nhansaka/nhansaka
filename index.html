@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Neshan Hansaka — Developer · Designer · Digital Entrepreneur</title>
+<meta name="description" content="IT Undergraduate at Uva Wellassa University · Founder of Shopizotrix Digital Solutions · Developer & Graphic Designer from Badulla, Sri Lanka" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #080810;
+  --bg2: #0e0e18;
+  --bg3: #13131e;
+  --accent: #6c5ce7;
+  --accent2: #a29bfe;
+  --accent3: #00cec9;
+  --pink: #fd79a8;
+  --text: #eeeeff;
+  --muted: #8887a8;
+  --border: rgba(108,92,231,0.2);
+  --card: rgba(19,19,30,0.9);
+  --glow: rgba(108,92,231,0.3);
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-body); font-size: 16px;
+  line-height: 1.7; overflow-x: hidden; cursor: none;
+}
+
+/* cursor */
+.cursor {
+  position: fixed; width: 10px; height: 10px;
+  background: var(--accent2); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.08s, opacity 0.3s;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  position: fixed; width: 34px; height: 34px;
+  border: 1px solid var(--accent2); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%); opacity: 0.5;
+}
+@media (max-width: 768px) { .cursor,.cursor-ring { display:none; } body { cursor: auto; } }
+
+/* orbs */
+.orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(100px); opacity: 0.14; animation: drift 14s ease-in-out infinite alternate; }
+.orb1 { width: 560px; height: 560px; background: var(--accent); top: -150px; left: -120px; }
+.orb2 { width: 400px; height: 400px; background: var(--accent3); bottom: 5%; right: -100px; animation-delay: -6s; }
+.orb3 { width: 300px; height: 300px; background: var(--pink); top: 45%; left: 35%; animation-delay: -10s; }
+@keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(28px,38px) scale(1.1); } }
+
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 5%;
+  background: rgba(8,8,16,0.75); backdrop-filter: blur(22px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-head); font-size: 1.25rem; font-weight: 800;
+  color: var(--text); text-decoration: none; letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 2px;
+}
+.nav-logo-dot { color: var(--accent2); }
+.nav-links { display: flex; gap: 1.8rem; list-style: none; }
+.nav-links a {
+  color: var(--muted); text-decoration: none; font-size: 0.88rem;
+  font-weight: 500; transition: color 0.2s; letter-spacing: 0.02em;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: transparent; color: var(--accent2);
+  border: 1.5px solid var(--accent); padding: 0.45rem 1.2rem;
+  border-radius: 100px; font-family: var(--font-body); font-size: 0.85rem;
+  cursor: none; transition: background 0.2s, color 0.2s; font-weight: 500;
+}
+.nav-cta:hover { background: var(--accent); color: #fff; }
+@media (max-width: 768px) { .nav-links { display: none; } }
+
+/* ── HERO ── */
+.hero {
+  position: relative; z-index: 1; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 5%; padding-top: 85px; overflow: hidden;
+}
+.hero-grid-bg {
+  position: absolute; inset: 0; z-index: -1;
+  background-image:
+    linear-gradient(rgba(108,92,231,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108,92,231,0.06) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 90% 90% at 40% 50%, black 20%, transparent 100%);
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent2); background: rgba(108,92,231,0.1);
+  border: 1px solid var(--border); padding: 0.38rem 1rem;
+  border-radius: 100px; margin-bottom: 1.6rem; width: fit-content;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+.hero-badge-dot {
+  width: 7px; height: 7px; background: var(--accent3); border-radius: 50%;
+  animation: blink 2.2s ease infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.65)} }
+
+.hero h1 {
+  font-family: var(--font-head); font-size: clamp(2.8rem, 8.5vw, 8rem);
+  font-weight: 800; line-height: 0.95; letter-spacing: -0.045em;
+  margin-bottom: 1rem;
+  animation: fadeUp 0.6s ease 0.22s both;
+}
+.hero h1 .outline { color: transparent; -webkit-text-stroke: 1.5px var(--accent2); }
+.hero-subtitle {
+  font-family: var(--font-head); font-size: clamp(0.85rem, 2vw, 1.1rem);
+  color: var(--muted); letter-spacing: 0.04em; font-weight: 400;
+  margin-bottom: 1.4rem;
+  animation: fadeUp 0.6s ease 0.35s both;
+}
+
+/* typewriter roles */
+.hero-roles {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 1.05rem; color: var(--text); font-weight: 400;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.6s ease 0.45s both;
+}
+.role-prefix { color: var(--muted); }
+#typed-role {
+  color: var(--accent2); font-weight: 500; font-family: var(--font-head);
+  border-right: 2px solid var(--accent2); padding-right: 3px;
+  animation: caret 0.85s step-end infinite;
+}
+@keyframes caret { 0%,100%{border-color:var(--accent2)} 50%{border-color:transparent} }
+
+.hero-desc {
+  max-width: 500px; color: var(--muted); font-size: 1rem;
+  font-weight: 300; margin-bottom: 2.2rem; line-height: 1.85;
+  animation: fadeUp 0.6s ease 0.55s both;
+}
+.hero-desc strong { color: var(--text); font-weight: 500; }
+.hero-btns {
+  display: flex; gap: 0.9rem; flex-wrap: wrap;
+  animation: fadeUp 0.6s ease 0.65s both;
+}
+.btn-primary {
+  background: var(--accent); color: #fff;
+  padding: 0.8rem 1.9rem; border-radius: 100px;
+  text-decoration: none; font-weight: 500; font-size: 0.93rem;
+  border: none; cursor: none; transition: transform 0.2s, box-shadow 0.2s;
+  display: inline-flex; align-items: center; gap: 0.45rem;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 35px var(--glow); }
+.btn-secondary {
+  background: transparent; color: var(--text);
+  padding: 0.8rem 1.9rem; border-radius: 100px;
+  border: 1.5px solid var(--border); text-decoration: none;
+  font-weight: 500; font-size: 0.93rem; cursor: none;
+  transition: border-color 0.2s, background 0.2s;
+  display: inline-flex; align-items: center; gap: 0.45rem;
+}
+.btn-secondary:hover { border-color: var(--accent2); background: rgba(108,92,231,0.08); }
+
+.hero-meta {
+  position: absolute; bottom: 2rem; left: 5%; right: 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  animation: fadeUp 0.6s ease 0.85s both;
+}
+.hero-location {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em;
+}
+.hero-scroll-hint {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.scroll-bar { width: 36px; height: 1px; background: var(--accent); animation: pulse-bar 2s ease infinite; }
+@keyframes pulse-bar { 0%,100%{transform:scaleX(1);opacity:1} 50%{transform:scaleX(0.5);opacity:0.4} }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── SECTION COMMON ── */
+section { position: relative; z-index: 1; padding: 6rem 5%; }
+.section-tag { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent3); margin-bottom: 0.6rem; font-weight: 500; }
+.section-title {
+  font-family: var(--font-head); font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.8rem; color: var(--text);
+}
+.section-sub { color: var(--muted); max-width: 480px; margin-bottom: 3rem; font-weight: 300; font-size: 0.97rem; }
+.divider { height: 1px; background: linear-gradient(90deg, var(--accent) 0%, transparent 60%); opacity: 0.2; margin: 0 5%; }
+
+/* reveal */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; align-items: center; }
+@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+.about-visual { position: relative; }
+.about-frame {
+  aspect-ratio: 3/4; background: var(--bg3);
+  border: 1px solid var(--border); border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+.about-frame-grid {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(108,92,231,0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.about-monogram {
+  font-family: var(--font-head); font-size: 9rem; font-weight: 800;
+  color: transparent; -webkit-text-stroke: 1px rgba(162,155,254,0.2);
+  user-select: none; position: relative; z-index: 1; letter-spacing: -0.05em;
+}
+.about-badge-brand {
+  position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%);
+  background: var(--bg2); border: 1px solid var(--accent); border-radius: 12px;
+  padding: 0.9rem 1.4rem; white-space: nowrap; text-align: center;
+}
+.about-badge-brand strong {
+  display: block; font-family: var(--font-head); font-size: 0.85rem; font-weight: 700; color: var(--accent2);
+}
+.about-badge-brand span { font-size: 0.7rem; color: var(--muted); }
+
+.about-text h3 { font-family: var(--font-head); font-size: 1.7rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--text); }
+.about-text p { color: var(--muted); font-weight: 300; margin-bottom: 1rem; line-height: 1.85; font-size: 0.97rem; }
+.about-text p strong { color: var(--text); font-weight: 500; }
+
+.about-info { margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
+.info-row { display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; }
+.info-row .info-label { color: var(--muted); min-width: 80px; font-weight: 300; }
+.info-row .info-val { color: var(--text); font-weight: 400; }
+.info-row a { color: var(--accent2); text-decoration: none; }
+.info-row a:hover { text-decoration: underline; }
+
+.about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin-top: 1.8rem; }
+.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.2rem; }
+.stat-card strong { display: block; font-family: var(--font-head); font-size: 1.7rem; font-weight: 800; color: var(--accent2); letter-spacing: -0.03em; }
+.stat-card span { font-size: 0.75rem; color: var(--muted); font-weight: 300; }
+
+/* ── ROLES / SKILLS ── */
+.skills-bg { background: var(--bg2); }
+.roles-marquee {
+  overflow: hidden; margin-bottom: 3.5rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0;
+}
+.marquee-track { display: flex; gap: 2.5rem; width: max-content; animation: marquee 18s linear infinite; }
+.marquee-item {
+  font-family: var(--font-head); font-size: 0.88rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 1rem; white-space: nowrap;
+}
+.marquee-item::after { content: '✦'; color: var(--accent); font-size: 0.7rem; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; }
+.skill-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+  padding: 1.6rem; transition: border-color 0.3s, transform 0.3s;
+  backdrop-filter: blur(10px);
+}
+.skill-card:hover { border-color: var(--accent2); transform: translateY(-4px); }
+.skill-card-icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+.skill-card h4 { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.9rem; color: var(--text); letter-spacing: 0.01em; }
+.pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.pill {
+  font-size: 0.75rem; padding: 0.25rem 0.75rem;
+  background: rgba(108,92,231,0.07); border: 1px solid var(--border);
+  border-radius: 100px; color: var(--muted); transition: all 0.2s;
+}
+.pill:hover { background: rgba(108,92,231,0.18); color: var(--accent2); border-color: var(--accent); }
+
+/* ── PROJECTS ── */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.4rem; }
+.proj-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+  overflow: hidden; transition: transform 0.3s, border-color 0.3s;
+}
+.proj-card:hover { transform: translateY(-6px); border-color: var(--accent); }
+.proj-thumb {
+  height: 180px; position: relative; display: flex; align-items: center; justify-content: center;
+  background: var(--bg3); overflow: hidden;
+}
+.proj-thumb-dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(108,92,231,0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.proj-thumb-glow {
+  position: absolute; width: 180px; height: 180px; border-radius: 50%;
+  filter: blur(50px); opacity: 0.25;
+}
+.proj-emoji { font-size: 3.2rem; position: relative; z-index: 1; }
+.proj-body { padding: 1.4rem; }
+.proj-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.proj-tag {
+  font-size: 0.68rem; padding: 0.18rem 0.6rem;
+  background: rgba(108,92,231,0.1); color: var(--accent2);
+  border-radius: 100px; border: 1px solid var(--border);
+}
+.proj-title { font-family: var(--font-head); font-size: 1.08rem; font-weight: 700; margin-bottom: 0.45rem; color: var(--text); }
+.proj-desc { color: var(--muted); font-size: 0.85rem; font-weight: 300; line-height: 1.7; margin-bottom: 1.1rem; }
+.proj-links { display: flex; gap: 0.65rem; }
+.proj-link {
+  font-size: 0.8rem; color: var(--accent2); text-decoration: none;
+  padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 100px;
+  transition: all 0.2s; font-weight: 500;
+}
+.proj-link:hover { background: rgba(108,92,231,0.12); border-color: var(--accent); }
+
+/* ── SHOPIZOTRIX ── */
+.brand-section { background: var(--bg2); }
+.brand-card {
+  background: var(--card); border: 1px solid var(--accent); border-radius: 24px;
+  padding: 3rem; position: relative; overflow: hidden;
+}
+.brand-card::before {
+  content: ''; position: absolute; top: -100px; right: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(108,92,231,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.brand-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; position: relative; }
+@media (max-width: 768px) { .brand-inner { grid-template-columns: 1fr; } }
+.brand-logo {
+  font-family: var(--font-head); font-size: 2rem; font-weight: 800;
+  color: var(--accent2); letter-spacing: -0.03em; margin-bottom: 0.4rem;
+}
+.brand-logo span { color: var(--accent3); }
+.brand-tagline { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.4rem; }
+.brand-desc { color: var(--muted); font-weight: 300; line-height: 1.85; font-size: 0.97rem; }
+.brand-services { display: flex; flex-direction: column; gap: 0.75rem; }
+.brand-service {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 0.9rem 1.1rem; background: rgba(108,92,231,0.07);
+  border: 1px solid var(--border); border-radius: 12px;
+  font-size: 0.88rem; color: var(--text); font-weight: 400;
+}
+.brand-service-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+/* ── CONTACT ── */
+.contact-wrap { max-width: 620px; margin: 0 auto; text-align: center; }
+.contact-wrap .section-tag, .contact-wrap .section-title, .contact-wrap .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
+.contact-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 24px;
+  padding: 2.5rem; position: relative; overflow: hidden;
+}
+.contact-card::before {
+  content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(108,92,231,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.contact-form { display: flex; flex-direction: column; gap: 0.9rem; position: relative; }
+.contact-form input, .contact-form textarea {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 12px; padding: 0.85rem 1.15rem;
+  color: var(--text); font-family: var(--font-body); font-size: 0.95rem;
+  outline: none; transition: border-color 0.2s, background 0.2s;
+}
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted); }
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); background: rgba(108,92,231,0.05); }
+.contact-form textarea { min-height: 120px; resize: vertical; }
+.contact-form button {
+  background: var(--accent); color: #fff;
+  padding: 0.95rem; border-radius: 12px; border: none;
+  font-family: var(--font-body); font-size: 1rem; font-weight: 500;
+  cursor: none; transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.contact-form button:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 28px var(--glow); }
+
+.contact-alt {
+  margin-top: 1.8rem; display: flex; flex-direction: column; gap: 0.7rem; align-items: center;
+}
+.contact-alt a { color: var(--muted); font-size: 0.88rem; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+.contact-alt a:hover { color: var(--accent2); }
+
+.social-row { display: flex; justify-content: center; gap: 0.9rem; margin-top: 1.6rem; }
+.social-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--border); background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); text-decoration: none; font-size: 1rem;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.social-btn:hover { border-color: var(--accent); color: var(--accent2); background: rgba(108,92,231,0.1); }
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1;
+  padding: 1.8rem 5%; border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+  color: var(--muted); font-size: 0.8rem; font-weight: 300;
+}
+footer .footer-name { color: var(--accent2); font-weight: 500; }
+footer .footer-brand { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">NH<span class="nav-logo-dot">.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#brand">Shopizotrix</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid-bg"></div>
+
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    IT Undergraduate &nbsp;·&nbsp; Uva Wellassa University
+  </div>
+
+  <h1>
+    Neshan<br>
+    <span class="outline">Hansaka</span>
+  </h1>
+
+  <p class="hero-subtitle">Founder of Shopizotrix Digital Solutions &nbsp;·&nbsp; Badulla, Sri Lanka</p>
+
+  <div class="hero-roles">
+    <span class="role-prefix">I'm a&nbsp;</span>
+    <span id="typed-role">Developer</span>
+  </div>
+
+  <p class="hero-desc">
+    IT undergraduate, <strong>freelancer</strong>, and digital entrepreneur building digital products, brands, and creative content — one pixel at a time.
+  </p>
+
+  <div class="hero-btns">
+    <a href="#projects" class="btn-primary">View My Work ↓</a>
+    <a href="https://github.com/nhansaka" target="_blank" class="btn-secondary">GitHub →</a>
+  </div>
+
+  <div class="hero-meta">
+    <div class="hero-location">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Badulla, Sri Lanka
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-bar"></div>
+      Scroll
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-frame">
+        <div class="about-frame-grid"></div>
+        <div class="about-monogram">NH</div>
+      </div>
+      <div class="about-badge-brand">
+        <strong>Shopizotrix Digital Solutions</strong>
+        <span>Founder &amp; CEO</span>
+      </div>
+    </div>
+
+    <div class="about-text reveal" style="padding-top:1.5rem;">
+      <p class="section-tag">About Me</p>
+      <h2 class="section-title">Building the digital future</h2>
+      <p>I'm <strong>Neshan Hansaka</strong> — an IT undergraduate at <strong>Uva Wellassa University</strong> pursuing an IIT Degree Program, based in Badulla, Sri Lanka.</p>
+      <p>I'm a developer, graphic designer, web designer, and freelancer with a vision for <strong>digital entrepreneurship</strong>. I founded <strong>Shopizotrix Digital Solutions</strong> to bring creative, tech-driven services to businesses and individuals alike.</p>
+      <p>I also create and sell digital assets on Shutterstock under the creator name <strong>Digifix</strong>, spanning graphics, illustrations, and more.</p>
+
+      <div class="about-info">
+        <div class="info-row">
+          <span class="info-label">University</span>
+          <span class="info-val">Uva Wellassa University</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Program</span>
+          <span class="info-val">IIT Degree Program</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Location</span>
+          <span class="info-val">Badulla, Sri Lanka</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Email</span>
+          <a href="mailto:shopizotrix.info@gmail.com" class="info-val">shopizotrix.info@gmail.com</a>
+        </div>
+        <div class="info-row">
+          <span class="info-label">GitHub</span>
+          <a href="https://github.com/nhansaka" target="_blank" class="info-val">@nhansaka</a>
+        </div>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat-card">
+          <strong>5+</strong>
+          <span>Roles &amp; Skills</span>
+        </div>
+        <div class="stat-card">
+          <strong>1</strong>
+          <span>Brand Founded</span>
+        </div>
+        <div class="stat-card">
+          <strong>🇱🇰</strong>
+          <span>Sri Lanka</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-bg">
+  <!-- Marquee of roles -->
+  <div class="roles-marquee reveal">
+    <div class="marquee-track" id="marquee-track">
+      <span class="marquee-item">Developer</span>
+      <span class="marquee-item">Graphic Designer</span>
+      <span class="marquee-item">Web Designer</span>
+      <span class="marquee-item">Freelancer</span>
+      <span class="marquee-item">Digital Entrepreneur</span>
+      <span class="marquee-item">IT Undergraduate</span>
+      <span class="marquee-item">Shopizotrix Founder</span>
+      <span class="marquee-item">Digifix Creator</span>
+      <!-- duplicate for seamless loop -->
+      <span class="marquee-item">Developer</span>
+      <span class="marquee-item">Graphic Designer</span>
+      <span class="marquee-item">Web Designer</span>
+      <span class="marquee-item">Freelancer</span>
+      <span class="marquee-item">Digital Entrepreneur</span>
+      <span class="marquee-item">IT Undergraduate</span>
+      <span class="marquee-item">Shopizotrix Founder</span>
+      <span class="marquee-item">Digifix Creator</span>
+    </div>
+  </div>
+
+  <p class="section-tag reveal">Skills &amp; Tools</p>
+  <h2 class="section-title reveal">What I bring to the table</h2>
+  <p class="section-sub reveal">A multi-disciplinary skill set — from code to design to digital business.</p>
+
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">⚡</div>
+      <h4>Frontend Development</h4>
+      <div class="pills">
+        <span class="pill">HTML5</span><span class="pill">CSS3</span>
+        <span class="pill">JavaScript</span><span class="pill">React</span>
+        <span class="pill">Next.js</span><span class="pill">Tailwind CSS</span>
+        <span class="pill">Bootstrap</span><span class="pill">Responsive Design</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🔧</div>
+      <h4>Backend &amp; Databases</h4>
+      <div class="pills">
+        <span class="pill">Node.js</span><span class="pill">PHP</span>
+        <span class="pill">MySQL</span><span class="pill">MongoDB</span>
+        <span class="pill">REST APIs</span><span class="pill">Firebase</span>
+        <span class="pill">Laravel</span><span class="pill">Express.js</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🎨</div>
+      <h4>Graphic &amp; Web Design</h4>
+      <div class="pills">
+        <span class="pill">Adobe Photoshop</span><span class="pill">Illustrator</span>
+        <span class="pill">Figma</span><span class="pill">Canva</span>
+        <span class="pill">Logo Design</span><span class="pill">Social Media Design</span>
+        <span class="pill">UI/UX</span><span class="pill">Brand Identity</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">💼</div>
+      <h4>Digital Business</h4>
+      <div class="pills">
+        <span class="pill">Freelancing</span><span class="pill">Stock Content</span>
+        <span class="pill">Digital Marketing</span><span class="pill">SEO Basics</span>
+        <span class="pill">Shutterstock</span><span class="pill">Client Management</span>
+        <span class="pill">Entrepreneurship</span><span class="pill">Branding</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🛠️</div>
+      <h4>Tools &amp; Workflow</h4>
+      <div class="pills">
+        <span class="pill">Git / GitHub</span><span class="pill">VS Code</span>
+        <span class="pill">Linux</span><span class="pill">Postman</span>
+        <span class="pill">Docker</span><span class="pill">Vercel</span>
+        <span class="pill">Netlify</span><span class="pill">cPanel</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">📸</div>
+      <h4>Content Creation</h4>
+      <div class="pills">
+        <span class="pill">Stock Photography</span><span class="pill">Digital Illustrations</span>
+        <span class="pill">Vector Art</span><span class="pill">Mockups</span>
+        <span class="pill">Social Templates</span><span class="pill">YouTube Thumbnails</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-tag reveal">Selected Work</p>
+  <h2 class="section-title reveal">Projects</h2>
+  <p class="section-sub reveal">Things I've designed, built, and shipped.</p>
+
+  <div class="projects-grid">
+    <div class="proj-card reveal">
+      <div class="proj-thumb">
+        <div class="proj-thumb-dots"></div>
+        <div class="proj-thumb-glow" style="background: var(--accent);"></div>
+        <span class="proj-emoji">🛍️</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">Web Design</span><span class="proj-tag">E-Commerce</span><span class="proj-tag">PHP</span></div>
+        <div class="proj-title">Online Store — Shopizotrix</div>
+        <div class="proj-desc">A full-featured product showcase and ordering system built for a local business. Custom backend, product gallery, and mobile-first design.</div>
+        <div class="proj-links">
+          <a href="https://github.com/nhansaka" target="_blank" class="proj-link">GitHub →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-thumb">
+        <div class="proj-thumb-dots"></div>
+        <div class="proj-thumb-glow" style="background: var(--accent3);"></div>
+        <span class="proj-emoji">🎨</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">Graphic Design</span><span class="proj-tag">Branding</span><span class="proj-tag">Illustrator</span></div>
+        <div class="proj-title">Brand Identity Packages</div>
+        <div class="proj-desc">Logo design, brand guidelines, and social media kits delivered for multiple freelance clients. Cohesive visual identities from scratch.</div>
+        <div class="proj-links">
+          <a href="https://www.linkedin.com/in/hansaka-rajapaksha-b1802534b" target="_blank" class="proj-link">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-thumb">
+        <div class="proj-thumb-dots"></div>
+        <div class="proj-thumb-glow" style="background: var(--pink);"></div>
+        <span class="proj-emoji">📷</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">Shutterstock</span><span class="proj-tag">Digital Assets</span><span class="proj-tag">Digifix</span></div>
+        <div class="proj-title">Digifix — Stock Content</div>
+        <div class="proj-desc">A growing library of digital illustrations, vector art, and photography published on Shutterstock under the Digifix creator profile.</div>
+        <div class="proj-links">
+          <a href="https://www.shutterstock.com/g/Digifix" target="_blank" class="proj-link">Shutterstock ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-thumb">
+        <div class="proj-thumb-dots"></div>
+        <div class="proj-thumb-glow" style="background: #fdcb6e;"></div>
+        <span class="proj-emoji">🌐</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">React</span><span class="proj-tag">Node.js</span><span class="proj-tag">Full Stack</span></div>
+        <div class="proj-title">Portfolio Website</div>
+        <div class="proj-desc">This very site — designed and coded from scratch with custom animations, scroll reveals, and a dark futuristic aesthetic. Open source on GitHub.</div>
+        <div class="proj-links">
+          <a href="https://github.com/nhansaka" target="_blank" class="proj-link">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SHOPIZOTRIX BRAND -->
+<section id="brand" class="brand-section">
+  <p class="section-tag reveal">My Venture</p>
+  <h2 class="section-title reveal">Shopizotrix Digital Solutions</h2>
+  <p class="section-sub reveal">A digital solutions brand I founded — serving clients with design, development &amp; content.</p>
+
+  <div class="brand-card reveal">
+    <div class="brand-inner">
+      <div>
+        <div class="brand-logo">Shopizo<span>trix</span></div>
+        <div class="brand-tagline">Digital Solutions · Badulla, Sri Lanka</div>
+        <p class="brand-desc">
+          Shopizotrix Digital Solutions is my personal brand and freelance studio. I provide end-to-end digital services — from building websites and designing brand identities to creating digital content and stock assets. My goal is to empower businesses and creators with high-quality, affordable digital solutions.
+        </p>
+        <div style="margin-top:1.4rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
+          <a href="mailto:shopizotrix.info@gmail.com" class="btn-primary" style="font-size:0.85rem; padding:0.65rem 1.4rem;">Contact Us</a>
+          <a href="https://www.linkedin.com/in/hansaka-rajapaksha-b1802534b" target="_blank" class="btn-secondary" style="font-size:0.85rem; padding:0.65rem 1.4rem;">LinkedIn ↗</a>
+        </div>
+      </div>
+      <div class="brand-services">
+        <div class="brand-service"><span class="brand-service-icon">🌐</span> Web Design &amp; Development</div>
+        <div class="brand-service"><span class="brand-service-icon">🎨</span> Graphic Design &amp; Branding</div>
+        <div class="brand-service"><span class="brand-service-icon">📸</span> Digital Content &amp; Stock Assets</div>
+        <div class="brand-service"><span class="brand-service-icon">📱</span> Social Media Design</div>
+        <div class="brand-service"><span class="brand-service-icon">💡</span> Digital Marketing &amp; SEO</div>
+        <div class="brand-service"><span class="brand-service-icon">🖼️</span> UI/UX &amp; Prototyping</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <p class="section-tag reveal">Get In Touch</p>
+    <h2 class="section-title reveal">Let's build something</h2>
+    <p class="section-sub reveal">Have a project, collab, or just want to say hello? Reach out anytime.</p>
+
+    <div class="contact-card reveal">
+      <div class="contact-form">
+        <input type="text" placeholder="Your Name" />
+        <input type="email" placeholder="Your Email" />
+        <input type="text" placeholder="Subject" />
+        <textarea placeholder="Your Message..."></textarea>
+        <button type="button" id="send-btn">Send Message</button>
+      </div>
+
+      <div class="contact-alt">
+        <a href="mailto:shopizotrix.info@gmail.com">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+          shopizotrix.info@gmail.com
+        </a>
+      </div>
+
+      <div class="social-row">
+        <a href="https://github.com/nhansaka" target="_blank" class="social-btn" title="GitHub">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/hansaka-rajapaksha-b1802534b" target="_blank" class="social-btn" title="LinkedIn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://www.shutterstock.com/g/Digifix" target="_blank" class="social-btn" title="Shutterstock — Digifix">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        </a>
+        <a href="mailto:shopizotrix.info@gmail.com" class="social-btn" title="Email">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 <span class="footer-name">Neshan Hansaka</span> &nbsp;·&nbsp; <span class="footer-brand">Shopizotrix Digital Solutions</span></span>
+  <span>Badulla, Sri Lanka 🇱🇰</span>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+(function animC(){
+  cursor.style.left=mx+'px'; cursor.style.top=my+'px';
+  rx+=(mx-rx)*0.13; ry+=(my-ry)*0.13;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animC);
+})();
+document.querySelectorAll('a,button,.skill-card,.proj-card,.brand-service').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ cursor.style.transform='translate(-50%,-50%) scale(3)'; cursor.style.opacity='0.4'; });
+  el.addEventListener('mouseleave',()=>{ cursor.style.transform='translate(-50%,-50%) scale(1)'; cursor.style.opacity='1'; });
+});
+
+// Typewriter roles
+const roles = ['Developer','Graphic Designer','Web Designer','Freelancer','Digital Entrepreneur','Founder'];
+let ri=0, ci=0, deleting=false;
+const typedEl = document.getElementById('typed-role');
+function typeRole(){
+  const word = roles[ri];
+  if(!deleting){
+    typedEl.textContent = word.slice(0, ci+1);
+    ci++;
+    if(ci===word.length){ setTimeout(()=>{deleting=true; typeRole();}, 1600); return; }
+  } else {
+    typedEl.textContent = word.slice(0, ci-1);
+    ci--;
+    if(ci===0){ deleting=false; ri=(ri+1)%roles.length; }
+  }
+  setTimeout(typeRole, deleting ? 55 : 85);
+}
+typeRole();
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      e.target.style.transitionDelay=(i%5)*0.08+'s';
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(r=>observer.observe(r));
+
+// Nav highlight
+const secs = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{ if(window.scrollY>=s.offsetTop-130) cur=s.id; });
+  navAs.forEach(a=>{ a.style.color=a.getAttribute('href')==='#'+cur?'var(--text)':''; });
+});
+
+// Send button
+document.getElementById('send-btn').addEventListener('click', function(){
+  this.textContent='Message Sent! ✓';
+  this.style.background='#00b894';
+  setTimeout(()=>{ this.textContent='Send Message'; this.style.background=''; }, 3000);
+});
+</script>
+</body>
+</html>
