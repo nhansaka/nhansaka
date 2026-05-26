@@ -72,8 +72,6 @@ I'm an enthusiastic and self-driven IT undergraduate from Sri Lanka who enjoys c
 - 🌐 **Freelance Web Design Projects**
 - 🎨 **Digital Branding & Design Assets**
 - 💼 **Shopizotrix Digital Solutions** – My digital business brand
-- 📸 **Digifix Shutterstock Portfolio** – Stock design and creative asset profile
-
 ---
 
 ## 🚀 Featured Goals
